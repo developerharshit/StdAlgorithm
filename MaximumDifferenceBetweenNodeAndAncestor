@@ -1,0 +1,18 @@
+//https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/submissions/
+class Solution {
+public:
+  
+    int solve(TreeNode* root, int MAXX,int MINN){
+        
+        if(root==NULL) return MAXX-MINN;
+        
+        MAXX=max(MAXX,root->val);
+        MINN=min(MINN,root->val);
+        
+        return max(solve(root->left,MAXX,MINN),solve(root->right,MAXX,MINN));
+    }
+    int maxAncestorDiff(TreeNode* root) {
+        
+        return solve(root,INT_MIN,INT_MAX);
+    }
+};
