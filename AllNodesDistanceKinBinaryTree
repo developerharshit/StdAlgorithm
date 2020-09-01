@@ -1,0 +1,37 @@
+// Problem Link: https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/submissions/
+class Solution {
+public:
+  
+    unordered_map<TreeNode*,TreeNode*> mp;
+    vector<int> V;
+    unordered_set<TreeNode*> st;
+    void parent(TreeNode* root,TreeNode* p){
+        if(root==NULL)
+            return;
+        mp[root]=p;
+        parent(root->left,root);
+        parent(root->right,root);
+    }
+    void solve(TreeNode* root,int K){
+        
+        if(root==NULL)
+            return;
+        if(st.find(root)!=st.end())
+            return;
+        st.insert(root);
+        if(K==0){
+            V.push_back(root->val);
+            return;
+        }
+        solve(root->left,K-1);
+        solve(root->right,K-1);
+        solve(mp[root],K-1);
+    }
+    
+    vector<int> distanceK(TreeNode* root, TreeNode* target, int K) {
+        parent(root,NULL);
+        solve(target,K);
+        return V;
+        
+    }
+};
