@@ -1,0 +1,41 @@
+// Problem Link : https://leetcode.com/problems/number-of-good-leaf-nodes-pairs/submissions/
+class Solution {
+public:
+    int ans=0;
+    
+   vector<int> solve(TreeNode* root,int d){
+        vector<int> leaves;
+        if(root==NULL)
+            return leaves;
+       auto l=solve(root->left,d);
+       auto r=solve(root->right,d);
+       
+       if(l.size()==0&&r.size()==0){
+           leaves.push_back(1);
+               return leaves;
+       }
+       
+       for(int i=0;i<l.size();i++){
+           for(int j=0;j<r.size();j++){
+               if(l[i]+r[j]<=d)
+                   ans++;
+           }
+       }
+       
+       for(int i=0;i<l.size();i++){
+           l[i]++;
+           leaves.push_back(l[i]);
+       }
+        for(int i=0;i<r.size();i++){
+           r[i]++;
+           leaves.push_back(r[i]);
+       }
+       return leaves;
+            
+    }
+    int countPairs(TreeNode* root, int distance) {
+        
+        solve(root,distance);
+        return ans;
+    }
+};
