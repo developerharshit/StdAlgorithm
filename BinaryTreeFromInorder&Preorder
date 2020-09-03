@@ -1,0 +1,21 @@
+// Problem Link : https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/submissions/
+class Solution {
+public:
+    TreeNode* solve(vector<int>& preorder,int sp,int ep,vector<int>& inorder,int si,int ei){
+        
+        if(sp==ep)
+            return NULL;
+        
+        TreeNode* root=new TreeNode(preorder[sp]);
+        
+        int dis=find(inorder.begin()+si,inorder.begin()+ei,preorder[sp])-inorder.begin()-si;
+        root->left=solve(preorder,sp+1,sp+1+dis,inorder,si,si+dis);
+        root->right=solve(preorder,sp+1+dis,ep,inorder,si+dis+1,ei);
+        return root;
+        
+    }
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        
+        return solve(preorder,0,preorder.size(),inorder,0,inorder.size());
+    }
+};
