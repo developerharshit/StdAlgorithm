@@ -2,6 +2,10 @@
 using namespace std;
 
 // Problem link : https://leetcode.com/problems/remove-max-number-of-edges-to-keep-graph-fully-traversable/discuss/831506/C%2B%2B-Java-Textbook-Union-Find-Data-Structure-Code-with-Explanation-and-comments
+// Problem link : https://leetcode.com/problems/redundant-connection/ ||||| Soluton: https://leetcode.com/submissions/detail/394533062/
+
+
+
 /* You can simply plug in this class any many different codes. This class is a generic implementation of union-find. */
 class UnionFind {
     vector<int> component;
