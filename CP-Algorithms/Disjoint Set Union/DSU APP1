@@ -1,12 +1,5 @@
-#include<bits/stdc++.h>
-using namespace std;
+// Problem : https://leetcode.com/problems/redundant-connection/
 
-// Problem link : https://leetcode.com/problems/remove-max-number-of-edges-to-keep-graph-fully-traversable/discuss/831506/C%2B%2B-Java-Textbook-Union-Find-Data-Structure-Code-with-Explanation-and-comments
-// Problem link : https://leetcode.com/problems/redundant-connection/ ||||| Soluton: https://leetcode.com/submissions/detail/394533062/
-
-
-
-/* You can simply plug in this class any many different codes. This class is a generic implementation of union-find. */
 class UnionFind {
     vector<int> component;
     int distinctComponents;
@@ -50,5 +43,21 @@ public:
      */
     bool united() {
         return distinctComponents == 1;
+    }
+};
+class Solution {
+public:
+    vector<int> findRedundantConnection(vector<vector<int>>& edges) {
+        int ans=0;
+        UnionFind abc(3050);
+        
+        for(auto p:edges){
+            int a=p[0];int b=p[1];
+            if(abc.unite(a,b)==0){
+                return p;
+            } 
+        }
+        vector<int> v;
+        return v;
     }
 };
